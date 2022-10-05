@@ -21,6 +21,7 @@ config/active.dat
 config/config.json
 config/logging.json
 /plugins
+/products
 
 # Enterprise & products imports files
 imports/imports.go

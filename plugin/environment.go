@@ -175,7 +175,7 @@ func (env *Environment) setPluginState(id string, state int) {
 // PublicFilesPath returns a path and true if the plugin with the given id is active.
 // It returns an empty string and false if the path is not set or invalid
 func (env *Environment) PublicFilesPath(id string) (string, error) {
-	if !env.IsActive(id) {
+	if !env.IsActive(id) && id != "boards" {
 		return "", fmt.Errorf("plugin not found: %v", id)
 	}
 	return filepath.Join(env.pluginDir, id, "public"), nil

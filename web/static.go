@@ -29,17 +29,23 @@ func (w *Web) InitStatic() {
 		staticDir, _ := fileutils.FindDir(model.ClientDir)
 		mlog.Debug("Using client directory", mlog.String("clientDir", staticDir))
 
+		productsStaticDir, wat := fileutils.FindDir(model.ProductsClientDir)
+		mlog.Debug("Using products client directory", mlog.String("productsStaticDir", productsStaticDir), mlog.Bool("wat", wat))
+
 		subpath, _ := utils.GetSubpathFromConfig(w.srv.Config())
 
 		staticHandler := staticFilesHandler(http.StripPrefix(path.Join(subpath, "static"), http.FileServer(http.Dir(staticDir))))
+		productsStaticHandler := staticFilesHandler(http.StripPrefix(path.Join(subpath, "static", "products"), http.FileServer(http.Dir(productsStaticDir))))
 		pluginHandler := staticFilesHandler(http.StripPrefix(path.Join(subpath, "static", "plugins"), http.FileServer(http.Dir(*w.srv.Config().PluginSettings.ClientDirectory))))
 
 		if *w.srv.Config().ServiceSettings.WebserverMode == "gzip" {
 			staticHandler = gziphandler.GzipHandler(staticHandler)
+			productsStaticHandler = gziphandler.GzipHandler(productsStaticHandler)
 			pluginHandler = gziphandler.GzipHandler(pluginHandler)
 		}
 
 		w.MainRouter.PathPrefix("/static/plugins/").Handler(pluginHandler)
+		w.MainRouter.PathPrefix("/static/products/").Handler(productsStaticHandler)
 		w.MainRouter.PathPrefix("/static/").Handler(staticHandler)
 		w.MainRouter.Handle("/robots.txt", http.HandlerFunc(robotsHandler))
 		w.MainRouter.Handle("/unsupported_browser.js", http.HandlerFunc(unsupportedBrowserScriptHandler))

@@ -43,7 +43,8 @@ const (
 	StatusUnhealthy                 = "UNHEALTHY"
 	StatusRemove                    = "REMOVE"
 
-	ClientDir = "client"
+	ClientDir         = "client"
+	ProductsClientDir = "products"
 
 	APIURLSuffixV1 = "/api/v1"
 	APIURLSuffixV4 = "/api/v4"

@@ -111,6 +111,8 @@ func (ch *Channels) ServePluginPublicRequest(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
+	mlog.Debug("HARRISONHARRISON", mlog.String("publicFilesPath", publicFilesPath))
+
 	publicFilePath := path.Clean(r.URL.Path)
 	prefix := fmt.Sprintf("/plugins/%s/public/", pluginID)
 	if !strings.HasPrefix(publicFilePath, prefix) {
@@ -118,6 +120,8 @@ func (ch *Channels) ServePluginPublicRequest(w http.ResponseWriter, r *http.Requ
 		return
 	}
 	publicFile := filepath.Join(publicFilesPath, strings.TrimPrefix(publicFilePath, prefix))
+
+	mlog.Debug("HARRISONHARRISON public blah", mlog.String("publicFile", publicFile))
 	http.ServeFile(w, r, publicFile)
 }
 
