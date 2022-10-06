@@ -190,6 +190,15 @@ else
 	done
 endif
 
+	@# Products
+	BOARDS_WEBAPP_DIR=$(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist
+	@if [ -f $(BUILD_BOARDS_DIR)/ ] ; do \
+		echo "Copied web app files for Boards product"; \
+		mkdir -p products/boards; \
+		cp -R $$BOARDS_WEBAPP_DIR/* products/boards/; \
+		ls products/boards; \
+	fi
+
 package-osx-amd64: package-prep
 	DIST_PATH_GENERIC=$(DIST_PATH_OSX_AMD64) CURRENT_PACKAGE_ARCH=darwin_amd64 PLUGIN_ARCH=osx-amd64 MMCTL_PLATFORM="Darwin-x86_64" MM_BIN_NAME=mattermost $(MAKE) package-general
 	@# Package
