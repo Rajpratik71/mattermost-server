@@ -88,7 +88,7 @@ jobs:
           at: /mnt/ramdisk
       - run: |
           cd focalboard
-          make prebuild
+          make prebuild setup-go-work
       - run: |
           cd focalboard
           ls
