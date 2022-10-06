@@ -192,7 +192,7 @@ endif
 
 	@# Products
 	BOARDS_WEBAPP_DIR=$(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist
-	@if [ -f $(BUILD_BOARDS_DIR)/ ] ; do \
+	@if [ -f $(BUILD_BOARDS_DIR)/ ] ; then \
 		echo "Copied web app files for Boards product"; \
 		mkdir -p products/boards; \
 		cp -R $$BOARDS_WEBAPP_DIR/* products/boards/; \
