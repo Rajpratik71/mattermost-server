@@ -81,7 +81,7 @@ jobs:
   setup-focalboard-product:
     working_directory: /mnt/ramdisk/
     docker:
-      - image: mattermost/mattermost-build-webapp:20220802_node-16.10.0@sha256:3272aa759f10c2ef1719ed08cc82ddb07224bec5be86f09800c72f5e2a623c3d
+      - image: cimg/go:1.18-node
     resource_class: xlarge
     steps:
       - attach_workspace:
@@ -89,11 +89,11 @@ jobs:
       - run: |
           cd focalboard
           echo "Building Boards product for web app"
-          # make prebuild build-product # TODO figure out how to get this to run since it requires both Go and NPM while our docker images only include one or the other
-          make prebuild
-          cd mattermost-plugin/webapp
-          npm run build:product
-          cd ../..
+          make prebuild build-product # TODO figure out how to get this to run since it requires both Go and NPM while our docker images only include one or the other
+          # make prebuild
+          # cd mattermost-plugin/webapp
+          # npm run build:product
+          # cd ../..
           ls -l mattermost-plugin/webapp/dist # TODO remove me
       - persist_to_workspace:
           root: /mnt/ramdisk
