@@ -90,13 +90,14 @@ jobs:
           cd focalboard
           make prebuild
       - run: |
+          cd focalboard
           make build-product # TODO figure out how to get this to run since it requires both Go and NPM while our docker images only include one or the other
           # make prebuild
           # cd mattermost-plugin/webapp
           # npm run build:product
           # cd ../..
       - run : |
-          ls -l mattermost-plugin/webapp/dist # TODO remove me
+          ls -l focalboard/mattermost-plugin/webapp/dist # TODO remove me
       - persist_to_workspace:
           root: /mnt/ramdisk
           paths:
