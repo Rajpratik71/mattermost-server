@@ -91,6 +91,7 @@ jobs:
           make prebuild
       - run: |
           cd focalboard
+          ls
           make build-product # TODO figure out how to get this to run since it requires both Go and NPM while our docker images only include one or the other
           # make prebuild
           # cd mattermost-plugin/webapp
