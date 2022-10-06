@@ -87,13 +87,17 @@ jobs:
       - attach_workspace:
           at: /mnt/ramdisk
       - run: |
-          cd focalboard
+          cd mattermost-server
+          make setup-go-work
+      - run: |
           echo "Building Boards product for web app"
+          cd focalboard
           make prebuild build-product # TODO figure out how to get this to run since it requires both Go and NPM while our docker images only include one or the other
           # make prebuild
           # cd mattermost-plugin/webapp
           # npm run build:product
           # cd ../..
+      - run : |
           ls -l mattermost-plugin/webapp/dist # TODO remove me
       - persist_to_workspace:
           root: /mnt/ramdisk
