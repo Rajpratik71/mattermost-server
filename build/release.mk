@@ -193,7 +193,7 @@ else
 endif
 
 	@# Products
-	BOARDS_WEBAPP_DIR=$(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist
+	export BOARDS_WEBAPP_DIR=$(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist
 
 	@echo ""
 	@echo HARRISON variables
