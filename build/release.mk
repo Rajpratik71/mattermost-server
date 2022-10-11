@@ -193,28 +193,26 @@ else
 endif
 
 	@# Products
-	export BOARDS_WEBAPP_DIR=$(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist
 
 	@echo ""
 	@echo HARRISON variables
 	@echo "BUILD_BOARDS_DIR @$(BUILD_BOARDS_DIR)@ @$$BUILD_BOARDS_DIR@"
-	@echo "BOARDS_WEBAPP_DIR @$(BOARDS_WEBAPP_DIR)@ @$$BOARDS_WEBAPP_DIR@"
 	@echo "DIST_PATH_GENERIC @$(DIST_PATH_GENERIC)@ @$$DIST_PATH_GENERIC@"
 	@echo ""
 
 	@echo ""
 	@echo HARRISON printing files in boards dist folder
-	ls "$$BOARDS_WEBAPP_DIR"
+	ls "$(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist"
 	@echo ""
 
-	@echo "HARRISON getting products from $$BOARDS_WEBAPP_DIR if it exists"
+	@echo "HARRISON getting products from $(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist if it exists"
 	@echo "HARRISON and copying it to $(DIST_PATH_GENERIC)/products"
 
 	@if [ -f $(BUILD_BOARDS_DIR)/ ] ; then \
 		echo HARRISON that dir exists; \
 		echo "Copied web app files for Boards product"; \
 		mkdir -p $(DIST_PATH_GENERIC)/products/boards; \
-		cp -R $$BOARDS_WEBAPP_DIR/* $(DIST_PATH_GENERIC)/products/boards/; \
+		cp -R $(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist/* $(DIST_PATH_GENERIC)/products/boards/; \
 	else \
 		echo HARRISON that dir doesnt exist sad face; \
 	fi
