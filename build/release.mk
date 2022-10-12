@@ -210,7 +210,7 @@ endif
 
 # this seemed to work previously since BUILD_BOARDS_DIR existed, but on the last run, it didn't? weird
 
-	@if [ -f $(BUILD_BOARDS_DIR)/ ] ; then \
+	@if [ -d $(BUILD_BOARDS_DIR) ] ; then \
 		echo HARRISON that dir exists; \
 		echo "Copied web app files for Boards product"; \
 		mkdir -p $(DIST_PATH_GENERIC)/products/boards; \
