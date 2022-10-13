@@ -195,10 +195,10 @@ endif
 	@# Products
 
 	@if [ -d $(BUILD_BOARDS_DIR) ] ; then \
-		echo "Copied web app files for Boards product"; \
-		mkdir -p $(DIST_PATH_GENERIC)/products/boards; \
-		cp -R $(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist/* $(DIST_PATH_GENERIC)/products/boards/; \
-		ls $(DIST_PATH_GENERIC)/products/boards; \
+		echo "Copying web app files for Boards product"; \
+		mkdir -p $(DIST_PATH_GENERIC)/client/products/boards; \
+		cp -R $(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist/* $(DIST_PATH_GENERIC)/client/products/boards/; \
+		ls $(DIST_PATH_GENERIC)/client/products/boards; \
 	else \
 		echo "Unable to find files for Boards product"; \
 	fi

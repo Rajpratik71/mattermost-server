@@ -44,7 +44,7 @@ const (
 	StatusRemove                    = "REMOVE"
 
 	ClientDir         = "client"
-	ProductsClientDir = "products"
+	ProductsClientDir = "client/products"
 
 	APIURLSuffixV1 = "/api/v1"
 	APIURLSuffixV4 = "/api/v4"
