@@ -194,36 +194,14 @@ endif
 
 	@# Products
 
-	@echo ""
-	@echo HARRISON variables
-	@echo "BUILD_BOARDS_DIR @$(BUILD_BOARDS_DIR)@ @$$BUILD_BOARDS_DIR@"
-	@echo "DIST_PATH_GENERIC @$(DIST_PATH_GENERIC)@ @$$DIST_PATH_GENERIC@"
-	@echo ""
-
-	@echo ""
-	@echo HARRISON printing files in boards dist folder
-	ls "$(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist"
-	@echo ""
-
-	@echo "HARRISON getting products from $(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist if it exists"
-	@echo "HARRISON and copying it to $(DIST_PATH_GENERIC)/products"
-
-# this seemed to work previously since BUILD_BOARDS_DIR existed, but on the last run, it didn't? weird
-
 	@if [ -d $(BUILD_BOARDS_DIR) ] ; then \
-		echo HARRISON that dir exists; \
 		echo "Copied web app files for Boards product"; \
 		mkdir -p $(DIST_PATH_GENERIC)/products/boards; \
 		cp -R $(BUILD_BOARDS_DIR)/mattermost-plugin/webapp/dist/* $(DIST_PATH_GENERIC)/products/boards/; \
 		ls $(DIST_PATH_GENERIC)/products/boards; \
 	else \
-		echo HARRISON that dir doesnt exist sad face; \
+		echo "Unable to find files for Boards product"; \
 	fi
-
-	@echo ""
-	@echo HARRISON printing files in output products
-	ls $(DIST_PATH_GENERIC)/products/boards;
-	@echo ""
 
 package-osx-amd64: package-prep
 	DIST_PATH_GENERIC=$(DIST_PATH_OSX_AMD64) CURRENT_PACKAGE_ARCH=darwin_amd64 PLUGIN_ARCH=osx-amd64 MMCTL_PLATFORM="Darwin-x86_64" MM_BIN_NAME=mattermost $(MAKE) package-general
